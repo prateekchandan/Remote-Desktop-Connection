@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+</head>
+<body>
+<div id="sse">
+   <div id="message">
+   </div>
+   <input id="text">
+   <button onclick="send()">SEND</button>
+   
+   <script type="text/javascript">
+
+
+var ws=0
+
+  if ("WebSocket" in window)
+  {
+      document.getElementById('message').innerHTML="WEB SOCKET SUPPORTED";
+     // Let us open a web socket
+     ws = new WebSocket("ws://localhost:8882");
+     ws.onopen = function()
+     {
+        // Web Socket is connected, send data using send()
+        document.getElementById('message').innerHTML+="<br>Connected";
+     };
+     ws.onmessage = function (evt) 
+     { 
+        var received_msg = evt.data;
+        document.getElementById('message').innerHTML+="<br>"+received_msg;
+     };
+     ws.onclose = function()
+     { 
+        // websocket is closed.
+        document.getElementById('message').innerHTML+="<br>Connection closed";
+     }
+    /* ws.onopen = function()
+     {
+        // Web Socket is connected, send data using send()
+        ws.send("Message to send");
+        alert("Message is sent...");
+     };
+     ws.onmessage = function (evt) 
+     { 
+        var received_msg = evt.data;
+        alert("Message is received...");
+     };
+     ws.onclose = function()
+     { 
+        // websocket is closed.
+        alert("Connection is closed..."); 
+     };*/
+  }
+  else
+  {
+     // The browser doesn't support WebSocket
+     document.getElementById('message').innerHTML="WEB SOCKET CONNECTION FAILED";
+  }
+  function send(){
+    ws.send(document.getElementById('text').value);
+  }
+
+//while(1)
+//  ws.send("hello");
+</script>
+</div>
+</body>
+</html>
