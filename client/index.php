@@ -4,7 +4,7 @@
 
 <style type="text/css">
   #message{
-    height: 200px;
+    max-height: 200px;
   }
 </style>
 </head>
@@ -12,8 +12,11 @@
 <div id="sse">
    <div id="message">
    </div>
-   <input id="text">
-   <button onclick="send()">SEND</button>
+   <button onclick="disconnect()">DISCONNECT</button>
+  <br>
+  <br>
+  <br>
+  <br>
    
 
    <canvas id="myCanvas" width="300" height="300"></canvas>
@@ -26,7 +29,7 @@ var ws=0
   {
       document.getElementById('message').innerHTML="WEB SOCKET SUPPORTED";
      // Let us open a web socket
-     ws = new WebSocket("ws://<?php echo $_SERVER['SERVER_ADDR']?>:8881");
+     ws = new WebSocket("ws://<?php echo $_SERVER['SERVER_ADDR']?>:7861");
      ws.onopen = function()
      {
         // Web Socket is connected, send data using send()
@@ -35,7 +38,6 @@ var ws=0
      ws.onmessage = function (evt) 
      { 
         var received_msg = evt.data;
-        console.log(received_msg);
         received_msg=JSON.parse(received_msg);
         fillRect(received_msg)
      };
@@ -44,22 +46,6 @@ var ws=0
         // websocket is closed.
         document.getElementById('message').innerHTML+="<br>Connection closed";
      }
-    /* ws.onopen = function()
-     {
-        // Web Socket is connected, send data using send()
-        ws.send("Message to send");
-        alert("Message is sent...");
-     };
-     ws.onmessage = function (evt) 
-     { 
-        var received_msg = evt.data;
-        alert("Message is received...");
-     };
-     ws.onclose = function()
-     { 
-        // websocket is closed.
-        alert("Connection is closed..."); 
-     };*/
   }
   else
   {
@@ -86,6 +72,19 @@ function fillRect(myarray){
   };
 }
 
+var r=0,g=0,b=0;
+function changeimage(){
+  var str=r+","+g+","+b
+  ws.send(str);
+  r=(r+1)%255;
+  if(r==0)
+    g+=100
+}
+setInterval(changeimage, 20);
+
+function disconnect(){
+  ws.send("exit");
+}
 </script>
 </div>
 </body>
