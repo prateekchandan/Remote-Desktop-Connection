@@ -19,7 +19,7 @@
   <br>
    
 
-   <canvas id="myCanvas" width="300" height="300"></canvas>
+   <canvas id="myCanvas" width="1300" height="768"></canvas>
    <script type="text/javascript">
 
 
@@ -38,13 +38,15 @@ var ws=0
      ws.onmessage = function (evt) 
      { 
         var received_msg = evt.data;
+        var d = new Date();
+        console.log("Recieve: "+d.getTime());
         received_msg=JSON.parse(received_msg);
         fillRect(received_msg)
      };
      ws.onclose = function()
      { 
         // websocket is closed.
-        document.getElementById('message').innerHTML+="<br>Connection closed";
+        document.getElementById('message').innerHTML+="<br>Connection closed By Server";
      }
   }
   else
@@ -52,9 +54,7 @@ var ws=0
      // The browser doesn't support WebSocket
      document.getElementById('message').innerHTML="WEB SOCKET CONNECTION FAILED";
   }
-  function send(){
-    ws.send(document.getElementById('text').value);
-  }
+  
 
 //while(1)
 //  ws.send("hello");
@@ -62,12 +62,14 @@ var ws=0
 
 
 <script>
+
+
 function fillRect(myarray){
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
   for (var i = 0; i < myarray.length; i++) {
     data=myarray[i];
-    ctx.fillStyle = "rgb("+(data[2])+","+(data[3])+","+(data[4])+")";    
+    ctx.fillStyle = "#"+data[2];    
     ctx.fillRect( data[0]-1, data[1]-1, data[0], data[1] );
   };
 }
@@ -75,12 +77,14 @@ function fillRect(myarray){
 var r=0,g=0,b=0;
 function changeimage(){
   var str=r+","+g+","+b
+  var d = new Date();
+  console.log("Sent: "+d.getTime());
   ws.send(str);
   r=(r+1)%255;
   if(r==0)
     g+=100
 }
-setInterval(changeimage, 20);
+setInterval(changeimage, 1000);
 
 function disconnect(){
   ws.send("exit");

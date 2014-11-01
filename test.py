@@ -2,9 +2,11 @@
 
 import asyncio
 import websockets
-#import thread
+import os
+import threading
+import time
 
-#@asyncio.coroutine
+@asyncio.coroutine
 def hello(websocket, path):
 	name="k"
 	while name!="exit":
@@ -21,6 +23,7 @@ def hello(websocket, path):
 		else:
 			pass
 
+		'''
 		greeting="["
 		print(r)
 		x=r
@@ -35,10 +38,28 @@ def hello(websocket, path):
 			
 
 		greeting+="]"
+		'''
+		os.system("python image.py > out")
+		f=open("out",'r')
+		greeting=f.read()
 		yield from websocket.send(greeting)
 		print("image sent")
 
 start_server = websockets.serve(hello, '', 7861)
+i=0
+
+def take_screenshot():
+	while 1:
+		os.system("import -window root screen.bmp")
+		time.sleep(0.01)
+'''
+while i<10:
+	time.sleep(0.001)
+	thread = threading.Thread(target = take_screenshot, args = ())
+	thread.start()
+	thread.join()
+	i+=1
+'''	
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
