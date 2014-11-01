@@ -3,11 +3,11 @@ REMOTE DESKTOP CONNECTION
 
 This is course project of Networks Lab CS378
 
-Note : run server on Python3.3
+Note : run server on Python3.3 or Python3.4
 
 Dependencies : Web socket Library. Go to websockets do a
-sudo setup.py build
-sudo setup.py install
+sudo python3.4 setup.py build
+sudo python3.4 setup.py install
 
 Team Members:
 
