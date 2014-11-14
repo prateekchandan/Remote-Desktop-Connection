@@ -17,6 +17,8 @@
   <br>
   <br>
   <br>
+
+<img id="ItemPreview" src="" />
    
 
    <canvas id="myCanvas" width="1300" height="768"></canvas>
@@ -40,7 +42,7 @@ var ws=0
         var received_msg = evt.data;
         var d = new Date();
         console.log("Recieve: "+d.getTime());
-        received_msg=JSON.parse(received_msg);
+        //received_msg=JSON.parse(received_msg);
         fillRect(received_msg)
      };
      ws.onclose = function()
@@ -65,17 +67,21 @@ var ws=0
 
 
 function fillRect(myarray){
+	//alert(myarray);
+  document.getElementById("ItemPreview").src = "data:image/png;base64," + myarray;
+/*
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
   for (var i = 0; i < myarray.length; i++) {
     data=myarray[i];
     ctx.fillStyle = "#"+data[2];    
     ctx.fillRect( data[0]-1, data[1]-1, data[0], data[1] );
-  };
+  };*/
 }
 
 var r=0,g=0,b=0;
 function changeimage(){
+  //alert("hello");
   var str=r+","+g+","+b
   var d = new Date();
   console.log("Sent: "+d.getTime());
@@ -84,7 +90,7 @@ function changeimage(){
   if(r==0)
     g+=100
 }
-setInterval(changeimage, 1000);
+setInterval(changeimage, 100);
 
 function disconnect(){
   ws.send("exit");
