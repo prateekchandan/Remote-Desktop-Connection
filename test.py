@@ -22,8 +22,7 @@ def hello(websocket, path):
 			b=0
 		else:
 			pass
-
-		os.system("python image.py > out")
+		os.system("python testsc.py > out")
 		f=open("out",'r')
 		greeting=f.read()
 		yield from websocket.send(greeting)
