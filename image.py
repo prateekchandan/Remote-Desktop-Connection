@@ -1,10 +1,25 @@
-
+import Image
+import base64
+from array import array
 import pyscreenshot as ImageGrab
 
 def rgb_to_hex(rgb):
     return '%02x%02x%02x' % rgb
 
 im=ImageGrab.grab()
+im.save("temp.jpg", "JPEG")
+f = open("temp.jpg", "rb")
+bytes = bytearray(f.read())
+#pBits = im.convert("RGBA").tostring("raw", "RGBA")
+#data = im.load()
+#bytes = bytearray(pBits)
+stri = base64.b64encode(bytes)
+print stri
+
+
+#bytes = bytearray(im.read())
+#print im.getdata()
+"""
 pixels = list(im.getdata())
 
 width, height = im.size
@@ -21,7 +36,7 @@ while i<height:
 		j+=1
 	i+=1
 
-print st+']'
+print st + ']'"""
 #print pixels
 '''
 import os
@@ -43,5 +58,4 @@ while i < len(bytes):
 	bytearr.append(bytes[i])
 	i+=1
 print bytearr
-
 '''
