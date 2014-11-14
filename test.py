@@ -44,7 +44,7 @@ def hello(websocket, path):
 		greeting=f.read()
 		yield from websocket.send(greeting)
 		print("image sent")
-		print( greeting)
+#		print( greeting)
 
 start_server = websockets.serve(hello, '', 7861)
 i=0
