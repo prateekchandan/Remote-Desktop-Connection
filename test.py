@@ -23,22 +23,6 @@ def hello(websocket, path):
 		else:
 			pass
 
-		'''
-		greeting="["
-		print(r)
-		x=r
-		if 1==1:
-			y=1
-			while y<=300:
-				if y!=1:
-					greeting+=","
-				greeting+="["+str(r)+","+str(y)+","+str(r)+","+str(g)+","+str(b)+"]"
-				y+=1
-			x+=1
-			
-
-		greeting+="]"
-		'''
 		os.system("python image.py > out")
 		f=open("out",'r')
 		greeting=f.read()
