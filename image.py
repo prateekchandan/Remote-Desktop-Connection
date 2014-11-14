@@ -6,6 +6,7 @@ def rgb_to_hex(rgb):
 
 im=ImageGrab.grab()
 pixels = list(im.getdata())
+
 width, height = im.size
 i=0
 st = "["
