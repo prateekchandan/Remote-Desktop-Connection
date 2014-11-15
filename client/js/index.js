@@ -38,41 +38,78 @@ function fillRect(myarray){
  * mouseEvents and keyEvents capture
  */
 
-var mouseEvents = [];
+var mouseEvents = new Array();
 var keyEvents = new Array();
+var curKeys = [];
+for(var i = 0; i < 1000; i++) {
+	curKeys.push(false);
+}
 
 $(document).keydown(function (e) {
-	e.preventDefault();
-	keyEvents.push(e.which);
-	console.log(keyEvents);
+	if(e.which != 122 && e.which != 123) e.preventDefault();
+	if(!curKeys[e.which]){ 
+		keyEvents.push(e.which);
+	}
+	curKeys[e.which] = true;
 });
 
 $(document).keyup(function (e) {
 	e.preventDefault();
 	keyEvents.push(-e.which);
-	console.log(keyEvents);
+	curKeys[e.which] = false;
 });
 
-$(document).scroll(function(e) {
-if (e.originalEvent.wheelDelta >= 0) {
-        console.log('Scroll up');
-    }
-    else {
-        console.log('Scroll down');
-    }
+
+$('#ItemPreview').bind('mousewheel', function(e){
+	if(e.originalEvent.wheelDelta /120 > 0) {
+		var arr = ['-', '-', 4];
+		mouseEvents.push(arr.join(' '));
+	}
+	else{
+		var arr = ['-', '-', 5];
+		mouseEvents.push(arr.join(' '));
+	}
 });
 
 $('#ItemPreview').mousedown(function(e) {
+	e.preventDefault();
 	var x = e.pageX - e.target.offsetLeft;
 	var y = e.pageY - e.target.offsetTop;
-	console.log(x, y);
+	var type = e.which;
+	var arr = [x, y, type];
+	mouseEvents.push(arr.join(' '));
 });
 
-function changeimage(){
-	var str = ''
-		ws.send(str);
+$('#ItemPreview').mouseup(function(e) {
+	e.preventDefault();
+	var x = e.pageX - e.target.offsetLeft;
+	var y = e.pageY - e.target.offsetTop;
+	var type = e.which;
+	var arr = [x, y, -type];
+	mouseEvents.push(arr.join(' '));
+});
+
+function getMouseCoord(){
+	var a = [mouse.x-$('#ItemPreview').offset().left, mouse.y-$('#ItemPreview').offset().top];
+	a = a.join();
+	return a;
 }
-setInterval(changeimage, 50);
+
+var mouse = {x: 0, y: 0};
+
+document.addEventListener('mousemove', function(e){ 
+    mouse.x = e.clientX || e.pageX; 
+    mouse.y = e.clientY || e.pageY 
+}, false);
+
+function changeimage(){
+	var message = keyEvents.join().concat('|').concat(mouseEvents.join()).concat('|').concat(getMouseCoord());
+	keyEvents = new Array();
+	mouseEvents = new Array();
+	console.log(message);
+	ws.send(message);
+}
+setInterval(changeimage, 500);
 
 function disconnect(){
 	ws.send("exit");

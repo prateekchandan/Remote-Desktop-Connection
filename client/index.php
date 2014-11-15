@@ -18,7 +18,7 @@
   <br>
   <br>
 
-<img id="ItemPreview" src="" />
+<img width="100%" id="ItemPreview" src="" />
    
 
    <canvas id="myCanvas" width="100%" height="100%"></canvas>
