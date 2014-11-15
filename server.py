@@ -5,7 +5,7 @@ import websockets
 import os
 import threading
 import time
-from pymouse import PyMouse
+
 
 
 @asyncio.coroutine
