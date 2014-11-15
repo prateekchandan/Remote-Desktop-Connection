@@ -1,6 +1,7 @@
 LICENSE
 MANIFEST.in
 README
+setup.cfg
 setup.py
 websockets/__init__.py
 websockets/client.py
@@ -21,5 +22,4 @@ websockets/version.py
 websockets.egg-info/PKG-INFO
 websockets.egg-info/SOURCES.txt
 websockets.egg-info/dependency_links.txt
-websockets.egg-info/requires.txt
 websockets.egg-info/top_level.txt
