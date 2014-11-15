@@ -10,6 +10,7 @@
 </head>
 <body>
 <div id="sse">
+<div style="display:none">
    <div id="message">
    </div>
    <button onclick="disconnect()">DISCONNECT</button>
@@ -17,7 +18,7 @@
   <br>
   <br>
   <br>
-
+</div>
 <img width="100%" id="ItemPreview" src="" />
    
 
