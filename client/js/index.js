@@ -38,6 +38,8 @@ function fillRect(myarray){
  * mouseEvents and keyEvents capture
  */
 
+$('#ItemPreview').height($(window).height());
+
 var mouseEvents = new Array();
 var keyEvents = new Array();
 var curKeys = [];
@@ -62,19 +64,19 @@ $(document).keyup(function (e) {
 
 $('#ItemPreview').bind('mousewheel', function(e){
 	if(e.originalEvent.wheelDelta /120 > 0) {
-		var arr = ['-', '-', 4];
+		var arr = [(mouse.x-$('#ItemPreview').offset().left)*1000.0/parseInt($('#ItemPreview').css('width')), (mouse.y-$('#ItemPreview').offset().top)*1000.0/parseInt($('#ItemPreview').css('height')), 4];
 		mouseEvents.push(arr.join(' '));
 	}
 	else{
-		var arr = ['-', '-', 5];
+		var arr = [(mouse.x-$('#ItemPreview').offset().left)*1000.0/parseInt($('#ItemPreview').css('width')), (mouse.y-$('#ItemPreview').offset().top)*1000.0/parseInt($('#ItemPreview').css('height')), 5];
 		mouseEvents.push(arr.join(' '));
 	}
 });
 
 $('#ItemPreview').mousedown(function(e) {
 	e.preventDefault();
-	var x = (e.pageX - e.target.offsetLeft)*1000.0/($(this).css('width'));
-	var y = (e.pageY - e.target.offsetTop)*1000.0/($(this).css('height'));
+	var x = (e.pageX - e.target.offsetLeft)*1000.0/parseInt($(this).css('width'));
+	var y = (e.pageY - e.target.offsetTop)*1000.0/parseInt($(this).css('height'));
 	var type = e.which;
 	var arr = [x, y, type];
 	mouseEvents.push(arr.join(' '));
@@ -82,15 +84,16 @@ $('#ItemPreview').mousedown(function(e) {
 
 $('#ItemPreview').mouseup(function(e) {
 	e.preventDefault();
-	var x = (e.pageX - e.target.offsetLeft)*1000.0/($(this).css('width'));
-	var y = (e.pageY - e.target.offsetTop)*1000.0/($(this).css('height'));
+	var x = (e.pageX - e.target.offsetLeft)*1000.0/parseInt($(this).css('width'));
+	var y = (e.pageY - e.target.offsetTop)*1000.0/parseInt($(this).css('height'));
 	var type = e.which;
 	var arr = [x, y, -type];
 	mouseEvents.push(arr.join(' '));
 });
 
 function getMouseCoord(){
-	var a = [(mouse.x-$('#ItemPreview').offset().left)*1000.0/($('#ItemPreview').css('width')), (mouse.y-$('#ItemPreview').offset().top)*1000.0/($('#ItemPreview').css('height'))];
+	var a = [(mouse.x-$('#ItemPreview').offset().left)*1000.0/parseInt($('#ItemPreview').css('width')), (mouse.y-$('#ItemPreview').offset().top)*1000.0/parseInt($('#ItemPreview').css('height'))];
+	console.log($('#ItemPreview').height());
 	a = a.join();
 	return a;
 }
