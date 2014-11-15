@@ -73,8 +73,8 @@ $('#ItemPreview').bind('mousewheel', function(e){
 
 $('#ItemPreview').mousedown(function(e) {
 	e.preventDefault();
-	var x = e.pageX - e.target.offsetLeft;
-	var y = e.pageY - e.target.offsetTop;
+	var x = (e.pageX - e.target.offsetLeft)*1000.0/($(this).'width');
+	var y = (e.pageY - e.target.offsetTop)*1000.0/($(this).css('height'));
 	var type = e.which;
 	var arr = [x, y, type];
 	mouseEvents.push(arr.join(' '));
@@ -82,15 +82,15 @@ $('#ItemPreview').mousedown(function(e) {
 
 $('#ItemPreview').mouseup(function(e) {
 	e.preventDefault();
-	var x = e.pageX - e.target.offsetLeft;
-	var y = e.pageY - e.target.offsetTop;
+	var x = (e.pageX - e.target.offsetLeft)*1000.0/($(this).'width');
+	var y = (e.pageY - e.target.offsetTop)*1000.0/($(this).'height');
 	var type = e.which;
 	var arr = [x, y, -type];
 	mouseEvents.push(arr.join(' '));
 });
 
 function getMouseCoord(){
-	var a = [mouse.x-$('#ItemPreview').offset().left, mouse.y-$('#ItemPreview').offset().top];
+	var a = [(mouse.x-$('#ItemPreview').offset().left)*1000.0/($(this).'width', (mouse.y-$('#ItemPreview').offset().top)*1000.0/($(this).'height'];
 	a = a.join();
 	return a;
 }
