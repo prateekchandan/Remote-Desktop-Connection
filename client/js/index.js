@@ -1,31 +1,35 @@
 var ws=0
+var state=1;
 
 if ("WebSocket" in window)
 {
-	document.getElementById('message').innerHTML="WEB SOCKET SUPPORTED";
 	// Let us open a web socket
 	ws = new WebSocket(serverAddr);
 	ws.onopen = function()
 	{
 		// Web Socket is connected, send data using send()
-		document.getElementById('message').innerHTML+="<br>Connected";
 	};
 	ws.onmessage = function (evt) 
 	{ 
-		var received_msg = evt.data;
-		var d = new Date();
-		fillRect(received_msg);
+		if(state){
+			var received_msg = evt.data;
+			var d = new Date();
+			fillRect(received_msg);
+		}
 	};
 	ws.onclose = function()
 	{ 
 		// websocket is closed.
-		document.getElementById('message').innerHTML+="<br>Connection closed By Server";
+		$('#ItemPreview').css('display','none');	
+		$('#msg').css('display','block');	
+		$('#msg').html('<h2>Connection Closed to Server</h2>');	
+
 	}
 }
 else
 {
 	// The browser doesn't support WebSocket
-	document.getElementById('message').innerHTML="WEB SOCKET CONNECTION FAILED";
+	
 }
 
 
@@ -106,14 +110,20 @@ document.addEventListener('mousemove', function(e){
 }, false);
 
 function changeimage(){
+	if(state==0)
+		return;
 	var message = keyEvents.join().concat('|').concat(mouseEvents.join()).concat('|').concat(getMouseCoord());
 	keyEvents = new Array();
 	mouseEvents = new Array();
 	console.log(message);
 	ws.send(message);
 }
-setInterval(changeimage, 500);
+setInterval(changeimage, 100);
 
 function disconnect(){
 	ws.send("exit");
+	$('#ItemPreview').css('display','none');	
+	$('#msg').css('display','block');	
+	$('#msg').html('<h2>Connection Closed to Server</h2>');	
+	state=0;
 }

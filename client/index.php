@@ -6,26 +6,24 @@
   #message{
     max-height: 200px;
   }
+  #close-btn{
+    position: fixed;
+    right: 0px;
+    top: 0px;
+  }
+  #msg{
+    padding: 50px;
+    font-color:#666; 
+    display: none;
+  }
 </style>
 </head>
 <body>
 <div id="sse">
-<div style="display:none">
-   <div id="message">
-   </div>
-   <button onclick="disconnect()">DISCONNECT</button>
-  <br>
-  <br>
-  <br>
-  <br>
-</div>
+<button id="close-btn" onclick="disconnect()">Close Connection</button>
 <img width="100%" id="ItemPreview" src="" />
-   
-
-   <canvas id="myCanvas" width="100%" height="100%"></canvas>
-
-
-
+<div id="msg">
+</div>
 <script>
 var serverAddr = "ws://<?php echo $_SERVER['SERVER_ADDR']?>:7861"
 </script>
