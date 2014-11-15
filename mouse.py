@@ -5,7 +5,8 @@ import gtk
 m = PyMouse()
 
 def MouseClick(x,y,event):
-	m.click(x, y, event)
+	if event>0:
+		m.click(x, y, event)
 	print "click at "+str(x)+" , "+str(y)
 
 def MouseGo(x,y):
