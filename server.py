@@ -24,29 +24,48 @@ def control_evets(msg):
 	except ValueError:
 		pass
 
+pwd="default"
 @asyncio.coroutine
 def hello(websocket, path):
-	name="k"
-	while name!="exit":
-		name = yield from websocket.recv()
-		control_evets(name)
+	print("New connection established")
+	while 1:
+		inp = yield from websocket.recv()
+		if(inp=="exit"):
+			return
+		if(inp==pwd):
+			break
+		yield from websocket.send("error")
+
+	yield from websocket.send("connect")
+	while 1:
+		inp = yield from websocket.recv()
+		if(inp=="exit"):
+			break
+		control_evets(inp)
 		os.system("python testsc.py > out")
 		f=open("out",'r')
 		greeting=f.read()
 		yield from websocket.send(greeting)
-		#print(name)
 
 arg= sys.argv
 if len(arg) > 1:
 	testing=1
 
+while 1:
+	print("Input server password : " , end="")
+	password = input()
+	print("Retype server password : ", end="")
+	repassword = input()
+
+	if(password==repassword):
+		pwd=password
+		break;
+
+	print("Password mismatch")
+
+print("Server started...")
 start_server = websockets.serve(hello, '', 7861)
 i=0
-
-def take_screenshot():
-	while 1:
-		os.system("import -window root screen.bmp")
-		time.sleep(0.01)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()

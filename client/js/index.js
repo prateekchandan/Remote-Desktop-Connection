@@ -1,5 +1,5 @@
 var ws=0
-var state=1;
+var state=0;
 
 if ("WebSocket" in window)
 {
@@ -16,11 +16,26 @@ if ("WebSocket" in window)
 			var d = new Date();
 			fillRect(received_msg);
 		}
+		else{
+			var received_msg = evt.data;
+			if(received_msg=="connect")
+			{
+				state=1
+				$('#ItemPreview').css('display','block');	
+				$('#connection').css('display','none');	
+				$('#msg').css('display','none');		
+			}
+			else 
+			{
+				$("#errmsg").html("Error in Password");
+			}
+		}
 	};
 	ws.onclose = function()
 	{ 
 		// websocket is closed.
 		$('#ItemPreview').css('display','none');	
+		$('#connection').css('display','none');	
 		$('#msg').css('display','block');	
 
 	}
@@ -51,6 +66,8 @@ for(var i = 0; i < 1000; i++) {
 }
 
 $(document).keydown(function (e) {
+	if(state==0)
+		return;
 	if(e.which != 122 && e.which != 123) e.preventDefault();
 	if(!curKeys[e.which]){ 
 		keyEvents.push(e.which);
@@ -59,6 +76,8 @@ $(document).keydown(function (e) {
 });
 
 $(document).keyup(function (e) {
+	if(state==0)
+		return;
 	e.preventDefault();
 	keyEvents.push(-e.which);
 	curKeys[e.which] = false;
@@ -124,5 +143,13 @@ function disconnect(){
 	ws.close();
 	$('#ItemPreview').css('display','none');	
 	$('#msg').css('display','block');	
+	$('#connection').css('display','none');	
+
 	state=0;
+}
+
+
+function tryconnect () {
+	var passwd=$("#passwd").val();
+	ws.send(passwd);
 }
