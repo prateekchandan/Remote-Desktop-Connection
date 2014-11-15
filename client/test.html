@@ -1,0 +1,22 @@
+<p id="result"> </p>
+Key pressed Code : <span id="key"> </span><br>
+Key released Code : <span id="key1"> </span><br>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+var mousePosition = {x:0, y:0};
+$(document).bind('mousemove',function(mouseMoveEvent){
+mousePosition.x = mouseMoveEvent.pageX;
+mousePosition.y = mouseMoveEvent.pageY;
+$('#result').html('x: '+mousePosition.x+' & y: '+mousePosition.y);
+});
+$(document).bind('keyup', function(keyUpEvent){
+  keyUpEvent.preventDefault();
+  $('#key').html(keyUpEvent.keyCode);
+  return false;
+});
+$(document).bind('keydown', function(keyUpEvent){
+  keyUpEvent.preventDefault();
+  $('#key1').html(keyUpEvent.keyCode);
+  return false;
+});
+</script>
