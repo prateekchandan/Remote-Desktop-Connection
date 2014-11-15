@@ -22,7 +22,6 @@ if ("WebSocket" in window)
 		// websocket is closed.
 		$('#ItemPreview').css('display','none');	
 		$('#msg').css('display','block');	
-		$('#msg').html('<h2>Connection Closed to Server</h2>');	
 
 	}
 }
@@ -122,8 +121,8 @@ setInterval(changeimage, 100);
 
 function disconnect(){
 	ws.send("exit");
+	ws.close();
 	$('#ItemPreview').css('display','none');	
 	$('#msg').css('display','block');	
-	$('#msg').html('<h2>Connection Closed to Server</h2>');	
 	state=0;
 }

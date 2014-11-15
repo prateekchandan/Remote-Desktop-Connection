@@ -10,6 +10,16 @@
     position: fixed;
     right: 0px;
     top: 0px;
+    color: #FFF;
+    background-color: #D9534F;
+    border-color: #D43F3A;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
   }
   #msg{
     padding: 50px;
@@ -23,6 +33,8 @@
 <button id="close-btn" onclick="disconnect()">Close Connection</button>
 <img width="100%" id="ItemPreview" src="" />
 <div id="msg">
+  <h2>Connection Closed to Server</h2>
+  <a href="">Refresh</a> to check connection
 </div>
 <script>
 var serverAddr = "ws://<?php echo $_SERVER['SERVER_ADDR']?>:7861"
