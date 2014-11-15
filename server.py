@@ -14,8 +14,9 @@ def control_evets(msg):
 	for event in m_events:
 		if event != "":
 			x,y,e=event.split(' ')
-			#print(x,y,e)
 			os.system("python mouse.py 1 "+x+" "+y+" "+e)
+	x,y=pointer.split(',')
+	os.system("python mouse.py 0 "+x+" "+y)
 
 @asyncio.coroutine
 def hello(websocket, path):
