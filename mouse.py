@@ -12,7 +12,6 @@ def MouseGo(x,y):
 	m.move(x,y)
 
 arguments= sys.argv
-print arguments
 arguments = [int(float(x)) for x in arguments[1:]]
 
 

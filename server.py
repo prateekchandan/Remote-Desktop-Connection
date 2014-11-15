@@ -5,7 +5,9 @@ import websockets
 import os
 import threading
 import time
+import sys
 
+testing = 0 # repalce by 1 for testing
 
 def control_evets(msg):
 	try:
@@ -17,7 +19,8 @@ def control_evets(msg):
 				x,y,e=event.split(' ')
 				os.system("python mouse.py 1 "+x+" "+y+" "+e)
 		x,y=pointer.split(',')
-		os.system("python mouse.py 0 "+x+" "+y)
+		if not testing:
+			os.system("python mouse.py 0 "+x+" "+y)
 	except ValueError:
 		pass
 
@@ -32,6 +35,10 @@ def hello(websocket, path):
 		greeting=f.read()
 		yield from websocket.send(greeting)
 		#print(name)
+
+arg= sys.argv
+if len(arg) > 1:
+	testing=1
 
 start_server = websockets.serve(hello, '', 7861)
 i=0
