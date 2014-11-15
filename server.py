@@ -8,15 +8,18 @@ import time
 
 
 def control_evets(msg):
-	keys,mouse,pointer = msg.split('|')
-	m_events = mouse.split(',')
-	
-	for event in m_events:
-		if event != "":
-			x,y,e=event.split(' ')
-			os.system("python mouse.py 1 "+x+" "+y+" "+e)
-	x,y=pointer.split(',')
-	os.system("python mouse.py 0 "+x+" "+y)
+	try:
+		keys,mouse,pointer = msg.split('|')
+		m_events = mouse.split(',')
+		
+		for event in m_events:
+			if event != "":
+				x,y,e=event.split(' ')
+				os.system("python mouse.py 1 "+x+" "+y+" "+e)
+		x,y=pointer.split(',')
+		os.system("python mouse.py 0 "+x+" "+y)
+	except ValueError:
+		pass
 
 @asyncio.coroutine
 def hello(websocket, path):
