@@ -9,18 +9,25 @@ import time
 
 def control_evets(msg):
 	keys,mouse,pointer = msg.split('|')
+	m_events = mouse.split(',')
+	
+	for event in m_events:
+		if event != "":
+			x,y,e=event.split(' ')
+			#print(x,y,e)
+			os.system("python mouse.py 1 "+x+" "+y+" "+e)
 
 @asyncio.coroutine
 def hello(websocket, path):
 	name="k"
 	while name!="exit":
 		name = yield from websocket.recv()
-		control_evets(msg)
+		control_evets(name)
 		os.system("python testsc.py > out")
 		f=open("out",'r')
 		greeting=f.read()
 		yield from websocket.send(greeting)
-		print("image sent")
+		#print(name)
 
 start_server = websockets.serve(hello, '', 7861)
 i=0
