@@ -5,6 +5,15 @@ import gtk
 m = PyMouse()
 
 def MouseClick(x,y,event):
+	if event == 2:
+		event = 3
+	elif event == 3:
+		event = 2
+	elif event == -2:
+		event = -3
+	elif event == -3:
+		event = -2
+
 	if event>0:
 		m.press(x, y, event)
 	else:

@@ -117,18 +117,18 @@ add = k.numpad_keys['Add']
 subtract = k.numpad_keys['Subtract']
 decimal_point = k.numpad_keys['Decimal']
 divide = k.numpad_keys['Divide']
-f1 = k.numpad_keys['F1']
-f2 = k.numpad_keys['F2']
-f3 = k.numpad_keys['F3']
-f4 = k.numpad_keys['F4']
-f5 = None
-f6 = None
-f7 = None
-f8 = None
-f9 = None
-f10 = None
-f11 = None
-f12 = None
+f1 = k.function_keys[1]
+f2 = k.function_keys[2]
+f3 = k.function_keys[3]
+f4 = k.function_keys[4]
+f5 = k.function_keys[5]
+f6 = k.function_keys[6]
+f7 = k.function_keys[7]
+f8 = k.function_keys[8]
+f9 = k.function_keys[9]
+f10 = k.function_keys[10]
+f11 = k.function_keys[11]
+f12 = k.function_keys[12]
 num_lock = k.num_lock_key
 scroll_lock = k.scroll_lock_key
 semi_colon = ';'
@@ -203,7 +203,7 @@ key_map = {8 : backspace  ,
            90 : 'z'  ,
            91 : left_window_key  ,
            92 : right_window_key  ,
-           93 : select_key  ,
+           #93 : select_key  ,
            96 : numpad_0  ,
            97 : numpad_1  ,
            98 : numpad_2  ,
@@ -239,13 +239,12 @@ key_map = {8 : backspace  ,
            189 : dash  ,
            190 : period  ,
            191 : forward_slash  ,
-           192 : grave_accent  ,
+           #192 : grave_accent  ,
            219 : open_bracket  ,
            220 : back_slash  ,
            221 : close_braket  ,
            222 : single_quote  
            }
-
 
 
 # length of arguments

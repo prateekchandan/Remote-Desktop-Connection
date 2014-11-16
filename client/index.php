@@ -42,9 +42,9 @@
 <body>
 <div id="sse">
 <button id="close-btn" onclick="disconnect()">Close Connection</button>
-<img width="100%" id="ItemPreview" src="" />
+<img width="100%" id="ItemPreview" src="" oncontextmenu="return false;" />
 <div id="connection">
-    <input id="passwd" placeholder="Input Server Password to connect (Max 3 tries)">
+    <input id="passwd" type="password" placeholder="Input Server Password to connect (Max 3 tries)">
     <button onclick="tryconnect()">Connect</button>
     <div id="errmsg"></div>
 </div>
@@ -53,7 +53,7 @@
   <a href="">Refresh</a> to check connection
 </div>
 <script>
-var serverAddr = "ws://<?php echo $_SERVER['SERVER_ADDR']?>:7861"
+var serverAddr = "ws://<?php echo $_SERVER['SERVER_ADDR']?>:7862"
 </script>
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src="js/index.js"></script>
