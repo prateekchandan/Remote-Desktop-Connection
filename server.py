@@ -6,18 +6,17 @@ import os
 import threading
 import time
 import sys
+import getpass
 
 testing = 0 # repalce by 1 for testing
 
 def control_evets(msg):
 	try:
-		print(msg)
 		keys,mouse,pointer = msg.split('|')
 		key_events = keys.split(',')
 
 		for event in key_events:
 			if event != "":
-				#print("python keypress.py "+event+ ' > log')
 				os.system("python keypress.py "+event+ ' > log' )
 		m_events = mouse.split(',')
 		for event in m_events:
@@ -61,10 +60,8 @@ if len(arg) > 1:
 	testing=1
 
 while 1:
-	print("Input server password : " , end="")
-	password = input()
-	print("Retype server password : ", end="")
-	repassword = input()
+	password = getpass.getpass("Enter server Password : ")
+	repassword = getpass.getpass("Retype server Password : ")
 
 	if(password==repassword):
 		pwd=password
