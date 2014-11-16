@@ -73,7 +73,7 @@ while 1:
 	print("Password mismatch")
 
 print("Server started...")
-start_server = websockets.serve(hello, '', 7861)
+start_server = websockets.serve(hello, '', 7862)
 i=0
 
 asyncio.get_event_loop().run_until_complete(start_server)
