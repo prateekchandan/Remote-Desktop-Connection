@@ -10,7 +10,8 @@ Dependencies :
 	sudo python3.4 setup.py build
 	sudo python3.4 setup.py install
 2. Pymouse : sudo pip install pymouse
-3. Xlib : sudo apt-get install python-xlib
+3. Pykeyboard : sudo pip install pykeyboard
+4. Xlib : sudo apt-get install python-xlib
 
 Team Members:
 
