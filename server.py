@@ -13,11 +13,15 @@ def control_evets(msg):
 	try:
 		keys,mouse,pointer = msg.split('|')
 		m_events = mouse.split(',')
-		
+		key_events = keys.split(',')
+
 		for event in m_events:
 			if event != "":
 				x,y,e=event.split(' ')
 				os.system("python mouse.py 1 "+x+" "+y+" "+e)
+
+		for event in key_events:
+			os.system("python keypress.py "+event)
 		x,y=pointer.split(',')
 		if not testing:
 			os.system("python mouse.py 0 "+x+" "+y)
