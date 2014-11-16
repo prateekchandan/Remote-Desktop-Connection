@@ -6,25 +6,47 @@
   #message{
     max-height: 200px;
   }
+  #close-btn{
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    color: #FFF;
+    background-color: #D9534F;
+    border-color: #D43F3A;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  #msg{
+    padding: 50px;
+    font-color:#666; 
+    display: none;
+  }
+  #connection{
+    display: block;
+  }
+  #ItemPreview{
+    display: none;
+  }
 </style>
 </head>
 <body>
 <div id="sse">
-   <div id="message">
-   </div>
-   <button onclick="disconnect()">DISCONNECT</button>
-  <br>
-  <br>
-  <br>
-  <br>
-
-<img id="ItemPreview" src="" />
-   
-
-   <canvas id="myCanvas" width="100%" height="100%"></canvas>
-
-
-
+<button id="close-btn" onclick="disconnect()">Close Connection</button>
+<img width="100%" id="ItemPreview" src="" />
+<div id="connection">
+    <input id="passwd" placeholder="Input Server Password to connect (Max 3 tries)">
+    <button onclick="tryconnect()">Connect</button>
+    <div id="errmsg"></div>
+</div>
+<div id="msg">
+  <h2>Connection Closed to Server</h2>
+  <a href="">Refresh</a> to check connection
+</div>
 <script>
 var serverAddr = "ws://<?php echo $_SERVER['SERVER_ADDR']?>:7861"
 </script>
