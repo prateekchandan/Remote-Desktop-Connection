@@ -245,8 +245,6 @@ key_map = {8 : backspace  ,
            222 : single_quote  
            }
 
-k = PyKeyboard()
-
 
 
 # length of arguments
@@ -254,7 +252,7 @@ len = len(sys.argv)
 
 # argument lengths should be equal to 2
 
-if len != 2:
+if len < 2:
     print "usage -> python keyPressTest.py arg1"
 else:
     # when only one argument present
