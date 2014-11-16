@@ -3,6 +3,9 @@
 <head>
 
 <style type="text/css">
+  body {
+    overflow:hidden;
+  }
   #message{
     max-height: 200px;
   }
@@ -30,6 +33,8 @@
     display: block;
   }
   #ItemPreview{
+    margin-left:-9px;
+    margin-top:-9px;
     display: none;
   }
 </style>

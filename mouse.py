@@ -6,8 +6,9 @@ m = PyMouse()
 
 def MouseClick(x,y,event):
 	if event>0:
-		m.click(x, y, event)
-		print "click at "+str(x)+" , "+str(y)+" , "+str(event)
+		m.press(x, y, event)
+	else:
+		m.release(x,y,abs(event))
 
 def MouseGo(x,y):
 	m.move(x,y)

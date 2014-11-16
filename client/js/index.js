@@ -56,7 +56,12 @@ function fillRect(myarray){
  * mouseEvents and keyEvents capture
  */
 
+$(window).resize(function(){
+	$('#ItemPreview').height($(window).height());
+	$('#ItemPreview').width($(window).width());
+})
 $('#ItemPreview').height($(window).height());
+$('#ItemPreview').width($(window).width());
 
 var mouseEvents = new Array();
 var keyEvents = new Array();
