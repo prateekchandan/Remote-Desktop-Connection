@@ -143,7 +143,7 @@ function changeimage(){
 	//console.log(message);
 	ws.send(message);
 }
-setInterval(changeimage, 100);
+setInterval(changeimage, 500);
 
 function disconnect(){
 	ws.send("exit");
