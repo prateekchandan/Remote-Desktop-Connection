@@ -13,8 +13,7 @@ if ("WebSocket" in window)
 	{ 
 		if(state){
 			var received_msg = evt.data;
-			var d = new Date();
-			fillRect(received_msg);
+			ChangeFrame(received_msg);
 		}
 		else{
 			var received_msg = evt.data;
@@ -42,12 +41,14 @@ if ("WebSocket" in window)
 }
 else
 {
-	// The browser doesn't support WebSocket
+	$('#ItemPreview').css('display','none');	
+	$('#connection').css('display','none');	
+	$('#msg').css('display','block');	
 	
 }
 
 
-function fillRect(myarray){
+function ChangeFrame(myarray){
 	document.getElementById("ItemPreview").src = "data:image/png;base64," + myarray;
 }
 
@@ -66,6 +67,7 @@ $('#ItemPreview').width($(window).width());
 var mouseEvents = new Array();
 var keyEvents = new Array();
 var curKeys = [];
+
 for(var i = 0; i < 1000; i++) {
 	curKeys.push(false);
 }
@@ -138,10 +140,10 @@ function changeimage(){
 	var message = keyEvents.join().concat('|').concat(mouseEvents.join()).concat('|').concat(getMouseCoord());
 	keyEvents = new Array();
 	mouseEvents = new Array();
-	console.log(message);
+	//console.log(message);
 	ws.send(message);
 }
-setInterval(changeimage, 400);
+setInterval(changeimage, 100);
 
 function disconnect(){
 	ws.send("exit");
