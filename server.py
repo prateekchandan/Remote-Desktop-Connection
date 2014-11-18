@@ -10,7 +10,7 @@ import getpass
 
 testing = 0 # repalce by 1 for testing
 
-def control_evets(msg):
+def control_events(msg):
 	try:
 		keys,mouse,pointer = msg.split('|')
 		key_events = keys.split(',')
@@ -34,7 +34,7 @@ def control_evets(msg):
 
 pwd="default"
 @asyncio.coroutine
-def hello(websocket, path):
+def client_handler(websocket, path):
 	print("New connection established")
 	while 1:
 		inp = yield from websocket.recv()
@@ -49,10 +49,11 @@ def hello(websocket, path):
 		inp = yield from websocket.recv()
 		if(inp=="exit"):
 			break
-		control_evets(inp)
+		control_events(inp)
 		os.system("python testsc.py > out")
 		f=open("out",'r')
 		greeting=f.read()
+		print("Sent : "+str(len(greeting))+" bytes")
 		yield from websocket.send(greeting)
 
 arg= sys.argv
@@ -70,7 +71,8 @@ while 1:
 	print("Password mismatch")
 
 print("Server started...")
-start_server = websockets.serve(hello, '', 7862)
+start_server = websockets.serve(client_handler, '', 7862)
+
 i=0
 
 asyncio.get_event_loop().run_until_complete(start_server)
