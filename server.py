@@ -50,7 +50,7 @@ def client_handler(websocket, path):
 		if(inp=="exit"):
 			break
 		control_events(inp)
-		os.system("python testsc.py > out")
+		os.system("python image_generator.py > out")
 		f=open("out",'r')
 		greeting=f.read()
 		print("Sent : "+str(len(greeting))+" bytes")
