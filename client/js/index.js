@@ -122,7 +122,7 @@ $('#ItemPreview').mouseup(function(e) {
 
 function getMouseCoord(){
 	var a = [parseInt(mouse.x-$('#ItemPreview').offset().left)*1000.0/parseInt($('#ItemPreview').css('width')), parseInt(mouse.y-$('#ItemPreview').offset().top)*1000.0/parseInt($('#ItemPreview').css('height'))];
-	console.log($('#ItemPreview').height());
+	//console.log($('#ItemPreview').height());
 	a = a.join();
 	return a;
 }
@@ -143,7 +143,7 @@ function changeimage(){
 	//console.log(message);
 	ws.send(message);
 }
-setInterval(changeimage, 100);
+setInterval(changeimage, 400);
 
 function disconnect(){
 	ws.send("exit");
