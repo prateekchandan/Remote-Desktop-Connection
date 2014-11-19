@@ -46,7 +46,41 @@ def control_events(msg):
 	except ValueError:
 		pass
 
+
+def key_control_events(msg):
+		key_events = msg.split(',')
+
+		for event in key_events:
+			if event != "":
+				os.system("python keypress.py " + event + " > log" )
+
+
+def mouse_control_events(msg):
+		m_events = msg.split(',')
+		for event in m_events:
+			if event != "":
+				x,y,e=[int(float(a)) for a in event.split(' ')]
+				x=str((x*width)/1000.0)
+				y=str((y*height)/1000.0)
+				e1=str(abs(e))
+				if e > 0:
+					os.system("xdotool mousemove "+x+" "+y+" mousedown "+e1)
+					#os.system("python mouse.py 1 "+x+" "+y+" "+e+ " > log" )
+				else:
+					os.system("xdotool mousemove "+x+" "+y+" mouseup "+e1)
+
+
+def pointer_control_events(msg):
+		x,y=[int(float(a)) for a in msg.split(',')]
+		x=str((x*width)/1000.0)
+		y=str((y*height)/1000.0)
+		if not testing:
+			os.system("xdotool mousemove "+x+" "+y)
+			#os.system("python mouse.py 0 "+x+" "+y+ " > log")
+
+
 pwd="default"
+
 
 class AsyncEvent(threading.Thread):
 	def __init__(self):
@@ -57,6 +91,37 @@ class AsyncEvent(threading.Thread):
 		while 1:
 			if len(self.event_list) != 0:
 				control_events(self.event_list.pop(0))
+
+
+class AsyncEvent_key(threading.Thread):
+	def __init__(self):
+		threading.Thread.__init__(self)
+		self.event_list = []
+
+	def run(self):
+		while 1:
+			if len(self.event_list) != 0:
+				key_control_events(self.event_list.pop(0))
+
+class AsyncEvent_mouse(threading.Thread):
+	def __init__(self):
+		threading.Thread.__init__(self)
+		self.event_list = []
+
+	def run(self):
+		while 1:
+			if len(self.event_list) != 0:
+				mouse_control_events(self.event_list.pop(0))
+
+class AsyncEvent_pointer(threading.Thread):
+	def __init__(self):
+		threading.Thread.__init__(self)
+		self.event_list = []
+
+	def run(self):
+		while 1:
+			if len(self.event_list) != 0:
+				pointer_control_events(self.event_list.pop(0))
 
 
 
@@ -75,11 +140,29 @@ def client_handler(websocket, path):
 
 	background = AsyncEvent()
 	background.start()
+	
+	background_key = AsyncEvent_key()
+	background_key.start()
+	
+	background_mouse = AsyncEvent_mouse()
+	background_mouse.start()
+	
+	background_pointer = AsyncEvent_pointer()
+	background_pointer.start()
+	
+	
+	
 	while 1:
 		inp = yield from websocket.recv()
 		if(inp=="exit"):
 			break
-		background.event_list.append(inp)
+		
+		keys,mouse,pointer = inp.split('|')
+		background_key.event_list.append(keys)
+		background_mouse.event_list.append(mouse)
+		background_pointer.event_list.append(pointer)
+		
+		#background.event_list.append(inp)
 		#control_events(inp)
 		os.system("python image_generator.py >log 2>&1")	
 		f = open("temp.jpg", "rb")
