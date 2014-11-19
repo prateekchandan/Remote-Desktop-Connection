@@ -52,7 +52,7 @@ function ChangeFrame(data){
 	var reader = new window.FileReader();
 	reader.readAsDataURL(data); 
 	reader.onloadend = function() {
-				document.getElementById("ItemPreview").src =  reader.result;
+		document.getElementById("ItemPreview").src =  reader.result;
   	}
 }
 
