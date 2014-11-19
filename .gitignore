@@ -4,3 +4,5 @@ out
 .*.swo
 *~
 log
+image_implement.txt
+OpenCV/*

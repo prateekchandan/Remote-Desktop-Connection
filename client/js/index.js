@@ -48,8 +48,12 @@ else
 }
 
 
-function ChangeFrame(myarray){
-	document.getElementById("ItemPreview").src = "data:image/png;base64," + myarray;
+function ChangeFrame(data){
+	var reader = new window.FileReader();
+	reader.readAsDataURL(data); 
+	reader.onloadend = function() {
+				document.getElementById("ItemPreview").src =  reader.result;
+  	}
 }
 
 
@@ -143,7 +147,7 @@ function changeimage(){
 	//console.log(message);
 	ws.send(message);
 }
-setInterval(changeimage, 500);
+setInterval(changeimage, 300);
 
 function disconnect(){
 	ws.send("exit");

@@ -1,5 +1,6 @@
 import Image, gtk
 import base64
+import sys
 from array import array
 class screenshot:
     def __init__(self):
@@ -36,7 +37,8 @@ if __name__ == '__main__':
     screenshot = screenshot()
     im = screenshot.take()
     im.save("temp.jpg", "JPEG")
-    f = open("temp.jpg", "rb")
+    """f = open("temp.jpg", "rb")
     bytes = bytearray(f.read())
+    print sys.getsizeof(bytes)
     stri = base64.b64encode(bytes)
-    print stri
+    print sys.getsizeof(stri)"""
