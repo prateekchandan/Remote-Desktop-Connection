@@ -43,13 +43,13 @@ References:
 
 Team Members:
 
-1. Prateek Chandan - 120050042
-2. Aditya Kumar Akash - 120050046
-3. Nishant Kumar Singh - 120050043
-4. Anurag Shirolkar - 120050003
+1. [Prateek Chandan - 120050042](http://prateekchandan.me/)
+2. [Aditya Kumar Akash - 120050046](http://www.cse.iitb.ac.in/~adityaakash/)
+3. [Nishant Kumar Singh - 120050043](http://www.cse.iitb.ac.in/~nishantsingh/)
+4. [Anurag Shirolkar - 120050003](http://www.cse.iitb.ac.in/~anuragshirolkar/)
 
 Guide :
-Prof Varhsa Apte
+[Prof Varhsa Apte](http://www.cse.iitb.ac.in/~varsha/)
 
 Department Of Computer Science
 IIT Bombay
