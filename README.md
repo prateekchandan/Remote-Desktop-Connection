@@ -9,10 +9,10 @@ Dependencies(Ubuntu/Linux Only) :
 
 1. **Python2.7** and **python3.3** or above (tested on Python3.3 and Python3.4)
 2. **Web socket Library**. Go to Libraries/websockets do a
-	sudo python3.4 setup.py build
-	sudo python3.4 setup.py install
+	i. sudo python3.4 setup.py build
+	ii. sudo python3.4 setup.py install
 3. **xdotool** for mouse : 
-	sudo apt-get install xdotool
+	i. sudo apt-get install xdotool
 4. **Pykeyboard** : sudo pip install pykeyboard
 	Note : The library for this is include . To install
 	goto Libraries/PyUserInput
