@@ -9,15 +9,15 @@ Dependencies(Ubuntu/Linux Only) :
 
 1. **Python2.7** and **python3.3** or above (tested on Python3.3 and Python3.4)
 2. **Web socket Library**. Go to Libraries/websockets do a
-	sudo python3.4 setup.py build
-	sudo python3.4 setup.py install
+  sudo python3.4 setup.py build
+  sudo python3.4 setup.py install
 3. **xdotool** for mouse : 
-	sudo apt-get install xdotool
+  sudo apt-get install xdotool
 4. **Pykeyboard** : sudo pip install pykeyboard
-	Note : The library for this is include . To install
-	goto Libraries/PyUserInput
-	sudo python setup.py build
-	sudo python setup.py install
+  Note : The library for this is include . To install
+  goto Libraries/PyUserInput
+  sudo python setup.py build
+  sudo python setup.py install
 5. **Xlib** : sudo apt-get install python-xlib (dependency for pykeyboard)
 6. **pygtk** : To capture screens
 	sudo pip install pygtk
@@ -43,13 +43,13 @@ References:
 
 Team Members:
 
-1. Prateek Chandan - 120050042
-2. Aditya Kumar Akash - 120050046
-3. Nishant Kumar Singh - 120050043
-4. Anurag Shirolkar - 120050003
+1. [Prateek Chandan - 120050042](http://prateekchandan.me/)
+2. [Aditya Kumar Akash - 120050046](http://www.cse.iitb.ac.in/~adityaakash/)
+3. [Nishant Kumar Singh - 120050043](http://www.cse.iitb.ac.in/~nishantsingh/)
+4. [Anurag Shirolkar - 120050003](http://www.cse.iitb.ac.in/~anuragshirolkar/)
 
 Guide :
-Prof Varhsa Apte
+[Prof Varhsa Apte](http://www.cse.iitb.ac.in/~varsha/)
 
 Department Of Computer Science
 IIT Bombay
