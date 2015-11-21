@@ -43,7 +43,7 @@ References:
 
 Team Members:
 
-1. [Prateek Chandan - 120050042](http://prateekchandan.me/)
+1. [Prateek Chandan - 120050042](http://prateekchandan.in/)
 2. [Aditya Kumar Akash - 120050046](http://www.cse.iitb.ac.in/~adityaakash/)
 3. [Nishant Kumar Singh - 120050043](http://www.cse.iitb.ac.in/~nishantsingh/)
 4. [Anurag Shirolkar - 120050003](http://www.cse.iitb.ac.in/~anuragshirolkar/)
